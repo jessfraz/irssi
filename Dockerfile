@@ -20,8 +20,11 @@ ENV IRSSI_VERSION 0.8.17
 RUN buildDeps=' \
 		autoconf \
 		automake \
+		libglib2.0-dev \
+		libncurses-dev \
 		libtool \
 		lynx \
+		pkg-config \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
