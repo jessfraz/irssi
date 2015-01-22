@@ -45,7 +45,12 @@ RUN buildDeps=' \
 		echo 'echo "#define IRSSI_VERSION_DATE $IRSSI_VERSION_DATE"'; \
 		echo 'echo "#define IRSSI_VERSION_TIME $IRSSI_VERSION_TIME"'; \
 	} > irssi-version.sh \
-	&& ./autogen.sh \
+	&& NOCONFIGURE=1 ./autogen.sh \
+	&& ./configure \
+		--enable-true-color \
+		--with-bot \
+		--with-proxy \
+		--with-socks \
 	&& make \
 	&& make install \
 	&& rm -rf /usr/src/irssi \
