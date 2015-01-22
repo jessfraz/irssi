@@ -24,6 +24,7 @@ RUN buildDeps=' \
 		libncurses-dev \
 		libtool \
 		lynx \
+		make \
 		pkg-config \
 	' \
 	&& set -x \
@@ -33,4 +34,8 @@ RUN buildDeps=' \
 	&& curl -sSL "https://github.com/irssi/irssi/archive/${IRSSI_VERSION}.tar.gz" \
 		| tar -xzC /usr/src/irssi --strip-components 1 \
 	&& cd /usr/src/irssi \
-	&& ./autogen.sh
+	&& ./autogen.sh \
+	&& make \
+	&& make install \
+	&& rm -rf /usr/src/irssi \
+	&& apt-get purge -y --auto-remove $buildDeps
