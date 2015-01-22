@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		curl \
 		libglib2.0-0 \
 		libwww-perl \
+		perl \
 		wget \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -25,6 +26,8 @@ RUN buildDeps=' \
 		automake \
 		libglib2.0-dev \
 		libncurses-dev \
+		libperl-dev \
+		libssl-dev \
 		libtool \
 		lynx \
 		make \
