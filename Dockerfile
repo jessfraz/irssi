@@ -56,5 +56,7 @@ RUN buildDeps=' \
 	&& rm -rf /usr/src/irssi \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+VOLUME $HOME/.irssi
+
 USER user
 CMD ["irssi"]
