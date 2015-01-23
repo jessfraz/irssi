@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		libglib2.0-0 \
+		libdatetime-perl \
 		libwww-perl \
 		perl \
 		wget \
