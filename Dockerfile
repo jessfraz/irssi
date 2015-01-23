@@ -18,13 +18,15 @@ WORKDIR /home/user
 
 ENV LANG C.UTF-8
 
+# gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1
+
 ENV IRSSI_VERSION 0.8.17
-ENV IRSSI_VERSION_DATE 20141011
-ENV IRSSI_VERSION_TIME 1044
 
 RUN buildDeps=' \
 		autoconf \
 		automake \
+		bzip2 \
 		libglib2.0-dev \
 		libncurses-dev \
 		libperl-dev \
@@ -37,16 +39,13 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL "http://www.irssi.org/files/irssi-${IRSSI_VERSION}.tar.bz2" -o /tmp/irssi.tar.bz2 \
+	&& curl -sSL "http://www.irssi.org/files/irssi-${IRSSI_VERSION}.tar.bz2.sig" -o /tmp/irssi.tar.bz2.sig \
+	&& gpg --verify /tmp/irssi.tar.bz2.sig \
 	&& mkdir -p /usr/src/irssi \
-	&& curl -sSL "https://github.com/irssi/irssi/archive/${IRSSI_VERSION}.tar.gz" \
-		| tar -xzC /usr/src/irssi --strip-components 1 \
+	&& tar -xjf /tmp/irssi.tar.bz2 -C /usr/src/irssi --strip-components 1 \
+	&& rm /tmp/irssi.tar.bz2* \
 	&& cd /usr/src/irssi \
-	&& { \
-		echo '#!/bin/sh'; \
-		echo 'echo "#define IRSSI_VERSION_DATE $IRSSI_VERSION_DATE"'; \
-		echo 'echo "#define IRSSI_VERSION_TIME $IRSSI_VERSION_TIME"'; \
-	} > irssi-version.sh \
-	&& NOCONFIGURE=1 ./autogen.sh \
 	&& ./configure \
 		--enable-true-color \
 		--with-bot \
