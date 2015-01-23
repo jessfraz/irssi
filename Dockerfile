@@ -13,8 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN useradd --create-home user \
 	&& mkdir -p /home/user/.irssi \
 	&& chown -R user:user /home/user
-ENV HOME /home/user
-WORKDIR /home/user
 
 ENV LANG C.UTF-8
 
@@ -56,6 +54,8 @@ RUN buildDeps=' \
 	&& rm -rf /usr/src/irssi \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+ENV HOME /home/user
+WORKDIR $HOME
 VOLUME $HOME/.irssi
 
 USER user
