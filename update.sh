@@ -1,7 +1,7 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
-current="$(curl -sSL 'http://www.irssi.org/download' | grep '<li>Latest release version: ' | sed -r 's!^.*<li>Latest release version: <strong>([^"]+)</strong></li>.*$!\1!' | head -1)"
+current="$(curl -fsSL 'http://www.irssi.org/download' | grep '<li>Latest release version: ' | sed -r 's!^.*<li>Latest release version: <strong>([^"]+)</strong></li>.*$!\1!' | head -1)"
 
 set -x
 
