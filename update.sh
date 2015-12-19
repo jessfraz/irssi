@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-current="$(curl -fsSL 'http://www.irssi.org/download' | grep '<li>Latest release version: ' | sed -r 's!^.*<li>Latest release version: <strong>([^"]+)</strong></li>.*$!\1!' | head -1)"
+current="$(git ls-remote --tags https://github.com/irssi-import/irssi.git | cut -d/ -f3 | cut -d^ -f1 | sort -uV | grep -v -- -rc | tail -1)"
 
 set -x
 
