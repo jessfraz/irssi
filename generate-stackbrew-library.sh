@@ -8,17 +8,22 @@ url='git://github.com/jfrazelle/irssi'
 echo '# maintainer: Jessie Frazelle <jess@docker.com> (@jfrazelle)'
 echo '# maintainer: Tianon Gravi <admwiggin@gmail.com> (@tianon)'
 
-commit="$(git log -1 --format='format:%H' -- Dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' Dockerfile))"
-fullVersion="$(grep -m1 'ENV IRSSI_VERSION ' Dockerfile | cut -d' ' -f3)"
+for variant in "" alpine; do
+	dockerfile=${variant:+$variant/}Dockerfile
+	suffix=${variant:+-$variant}
+	commit="$(git log -1 --format='format:%H' -- $dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' $dockerfile))"
+	fullVersion="$(grep -m1 'ENV IRSSI_VERSION ' $dockerfile | cut -d' ' -f3)"
 
-versionAliases=()
-while [ "${fullVersion%.*}" != "$fullVersion" ]; do
-	versionAliases+=( $fullVersion )
-	fullVersion="${fullVersion%.*}"
-done
-versionAliases+=( $fullVersion latest )
+	versionAliases=()
+	while [ "${fullVersion%.*}" != "$fullVersion" ]; do
+		versionAliases+=( ${fullVersion}${suffix} )
+		fullVersion="${fullVersion%.*}"
+	done
+	versionAliases+=( ${fullVersion}${suffix} ${variant:-latest} )
 
-echo
-for va in "${versionAliases[@]}"; do
-	echo "$va: ${url}@${commit}"
+	echo
+	for va in "${versionAliases[@]}"; do
+		echo "$va: ${url}@${commit}"
+	done
 done
+
