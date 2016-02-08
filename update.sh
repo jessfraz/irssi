@@ -5,4 +5,4 @@ current="$(git ls-remote --tags https://github.com/irssi-import/irssi.git | cut 
 
 set -x
 
-sed -ri 's/^(ENV IRSSI_VERSION) .*/\1 '"$current"'/' Dockerfile
+sed -ri 's/^(ENV IRSSI_VERSION) .*/\1 '"$current"'/' Dockerfile */Dockerfile
