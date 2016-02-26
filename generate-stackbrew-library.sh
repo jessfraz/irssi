@@ -9,7 +9,7 @@ echo '# maintainer: Jessie Frazelle <jess@docker.com> (@jfrazelle)'
 echo '# maintainer: Tianon Gravi <admwiggin@gmail.com> (@tianon)'
 
 commit="$(git log -1 --format='format:%H' -- Dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' Dockerfile))"
-fullVersion="$(grep -m1 'ENV IRSSI_VERSION ' Dockerfile | cut -d' ' -f3)"
+fullVersion="$(git show "$commit:Dockerfile" | awk 'toupper($1) == "ENV" && $2 == "IRSSI_VERSION" { print $3 }')"
 
 versionAliases=()
 while [ "${fullVersion%.*}" != "$fullVersion" ]; do
