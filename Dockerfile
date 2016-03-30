@@ -17,7 +17,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 0.8.17
+ENV IRSSI_VERSION 0.8.19
 
 RUN buildDeps=' \
 		autoconf \
@@ -31,20 +31,21 @@ RUN buildDeps=' \
 		lynx \
 		make \
 		pkg-config \
+		xz-utils \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -fsSL "https://github.com/irssi-import/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.bz2" -o /tmp/irssi.tar.bz2 \
-	&& curl -fsSL "https://github.com/irssi-import/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.bz2.sig" -o /tmp/irssi.tar.bz2.sig \
+	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -o /tmp/irssi.tar.xz \
+	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -o /tmp/irssi.tar.xz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
-	&& gpg --batch --verify /tmp/irssi.tar.bz2.sig /tmp/irssi.tar.bz2 \
-	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.bz2.sig \
+	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
+	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
 	&& mkdir -p /usr/src/irssi \
-	&& tar -xjf /tmp/irssi.tar.bz2 -C /usr/src/irssi --strip-components 1 \
-	&& rm /tmp/irssi.tar.bz2 \
+	&& tar -xf /tmp/irssi.tar.xz -C /usr/src/irssi --strip-components 1 \
+	&& rm /tmp/irssi.tar.xz \
 	&& cd /usr/src/irssi \
 	&& ./configure \
 		--enable-true-color \
