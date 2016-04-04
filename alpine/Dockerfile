@@ -33,7 +33,7 @@ RUN set -x \
 	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
 	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
 	&& mkdir -p /usr/src \
-	&& tar -xJf /tmp/irssi.tar.bz2 -C /usr/src \
+	&& tar -xJf /tmp/irssi.tar.xz -C /usr/src \
 	&& rm /tmp/irssi.tar.xz \
 	&& cd /usr/src/irssi-$IRSSI_VERSION \
 	&& ./configure \
