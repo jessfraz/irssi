@@ -2,7 +2,6 @@ FROM debian:jessie
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
-		curl \
 		libdatetime-perl \
 		libglib2.0-0 \
 		libwww-perl \
@@ -36,8 +35,8 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -o /tmp/irssi.tar.xz \
-	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -o /tmp/irssi.tar.xz.asc \
+	&& wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -O /tmp/irssi.tar.xz \
+	&& wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -O /tmp/irssi.tar.xz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
