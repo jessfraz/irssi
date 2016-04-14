@@ -1,5 +1,8 @@
 FROM alpine:3.3
 
+RUN apk --no-cache add \
+	ca-certificates
+
 ENV HOME /home/user
 RUN adduser -u 1001 -D user \
 	&& mkdir -p $HOME/.irssi \
@@ -13,7 +16,6 @@ RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
 		autoconf \
 		automake \
-		curl \
 		gcc \
 		glib-dev \
 		gnupg \
@@ -25,8 +27,8 @@ RUN set -x \
 		openssl-dev \
 		perl-dev \
 		pkgconf \
-	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -o /tmp/irssi.tar.xz \
-	&& curl -fsSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -o /tmp/irssi.tar.xz.asc \
+	&& wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -O /tmp/irssi.tar.xz \
+	&& wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -O /tmp/irssi.tar.xz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
