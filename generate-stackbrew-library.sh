@@ -5,9 +5,9 @@ defaultVariant='debian'
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-url='git://github.com/jfrazelle/irssi'
+url='git://github.com/jessfraz/irssi'
 
-echo '# maintainer: Jessie Frazelle <jess@docker.com> (@jfrazelle)'
+echo '# maintainer: Jessie Frazelle <jess@docker.com> (@jessfraz)'
 echo '# maintainer: Tianon Gravi <admwiggin@gmail.com> (@tianon)'
 
 for variant in debian alpine; do
