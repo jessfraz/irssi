@@ -7,7 +7,7 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 url='git://github.com/jessfraz/irssi'
 
-echo '# maintainer: Jessie Frazelle <jess@docker.com> (@jessfraz)'
+echo '# maintainer: Jessie Frazelle <acidburn@google.com> (@jessfraz)'
 echo '# maintainer: Tianon Gravi <admwiggin@gmail.com> (@tianon)'
 
 for variant in debian alpine; do
