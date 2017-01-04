@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.5
 
 RUN apk --no-cache add \
 	ca-certificates
@@ -24,6 +24,7 @@ RUN set -x \
 		lynx \
 		make \
 		ncurses-dev \
+		openssl \
 		openssl-dev \
 		perl-dev \
 		pkgconf \
