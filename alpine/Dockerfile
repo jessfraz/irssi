@@ -58,7 +58,6 @@ RUN set -x \
 	&& apk del .build-deps
 
 WORKDIR $HOME
-VOLUME $HOME/.irssi
 
 USER user
 CMD ["irssi"]
