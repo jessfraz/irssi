@@ -22,6 +22,7 @@ RUN buildDeps=' \
 		autoconf \
 		automake \
 		bzip2 \
+		dpkg-dev \
 		libglib2.0-dev \
 		libncurses-dev \
 		libperl-dev \
@@ -46,12 +47,14 @@ RUN buildDeps=' \
 	&& tar -xf /tmp/irssi.tar.xz -C /usr/src/irssi --strip-components 1 \
 	&& rm /tmp/irssi.tar.xz \
 	&& cd /usr/src/irssi \
+	&& gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
 	&& ./configure \
+		--build="$gnuArch" \
 		--enable-true-color \
 		--with-bot \
 		--with-proxy \
 		--with-socks \
-	&& make -j$(nproc) \
+	&& make -j "$(nproc)" \
 	&& make install \
 	&& rm -rf /usr/src/irssi \
 	&& apt-get purge -y --auto-remove $buildDeps
