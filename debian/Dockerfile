@@ -42,7 +42,7 @@ RUN buildDeps=' \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
 	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
 	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
-	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
+	&& rm -rf "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
 	&& mkdir -p /usr/src/irssi \
 	&& tar -xf /tmp/irssi.tar.xz -C /usr/src/irssi --strip-components 1 \
 	&& rm /tmp/irssi.tar.xz \
