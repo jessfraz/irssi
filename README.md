@@ -14,6 +14,8 @@ For more information about the official images process, see the [docker-library/
 
 ---
 
+-	[Travis CI:  
+	![build status badge](https://img.shields.io/travis/jessfraz/irssi/master.svg)](https://travis-ci.org/jessfraz/irssi/branches)
 -	[Automated `update.sh`:  
 	![build status badge](https://doi-janky.infosiftr.net/job/update.sh/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/update.sh/job/irssi)
 
