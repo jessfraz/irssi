@@ -42,7 +42,7 @@ RUN buildDeps=' \
 	&& wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -O /tmp/irssi.tar.xz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
+	&& gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
 	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
 	&& gpgconf --kill all \
 	&& rm -rf "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
