@@ -10,7 +10,7 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.1.1
+ENV IRSSI_VERSION 1.1.2
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
