@@ -16,7 +16,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.1.2
+ENV IRSSI_VERSION 1.2.0
 
 RUN buildDeps=' \
 		autoconf \
