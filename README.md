@@ -2,26 +2,24 @@
 
 ## Maintained by: [Jessie and Tianon (of the Docker Community)](https://github.com/jessfraz/irssi), [with the appreciation of the Irssi Project](https://twitter.com/GeertHauwaerts/status/559131523145035776)
 
-This is the Git repo of the [Docker "Official Image"](https://docs.docker.com/docker-hub/official_repos/) for [irssi](https://hub.docker.com/_/irssi/) (not to be confused with any official irssi image provided by irssi upstream). See [the Docker Hub page](https://hub.docker.com/_/irssi/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
+This is the Git repo of the [Docker "Official Image"](https://github.com/docker-library/official-images#what-are-official-images) for [`irssi`](https://hub.docker.com/_/irssi/) (not to be confused with any official `irssi` image provided by `irssi` upstream). See [the Docker Hub page](https://hub.docker.com/_/irssi/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
 
-The [full description from Docker Hub](https://hub.docker.com/_/irssi/) is generated over in [docker-library/docs](https://github.com/docker-library/docs), specifically in [docker-library/docs/irssi](https://github.com/docker-library/docs/tree/master/irssi).
+The [full image description on Docker Hub](https://hub.docker.com/_/irssi/) is generated/maintained over in [the docker-library/docs repository](https://github.com/docker-library/docs), specifically in [the `irssi` directory](https://github.com/docker-library/docs/tree/master/irssi).
 
 ## See a change merged here that doesn't show up on Docker Hub yet?
 
-Check [the "library/irssi" manifest file in the docker-library/official-images repo](https://github.com/docker-library/official-images/blob/master/library/irssi), especially [PRs with the "library/irssi" label on that repo](https://github.com/docker-library/official-images/labels/library%2Firssi).
+For more information about the full official images change lifecycle, see [the "An image's source changed in Git, now what?" FAQ entry](https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what).
 
-For more information about the official images process, see the [docker-library/official-images readme](https://github.com/docker-library/official-images/blob/master/README.md).
+For outstanding `irssi` image PRs, check [PRs with the "library/irssi" label on the official-images repository](https://github.com/docker-library/official-images/labels/library%2Firssi). For the current "source of truth" for [`irssi`](https://hub.docker.com/_/irssi/), see [the `library/irssi` file in the official-images repository](https://github.com/docker-library/official-images/blob/master/library/irssi).
 
 ---
 
--	[Travis CI:  
-	![build status badge](https://img.shields.io/travis/jessfraz/irssi/master.svg)](https://travis-ci.org/jessfraz/irssi/branches)
--	[Automated `update.sh`:  
-	![build status badge](https://doi-janky.infosiftr.net/job/update.sh/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/update.sh/job/irssi)
+-	[![build status badge](https://img.shields.io/travis/jessfraz/irssi/master.svg?label=Travis%20CI)](https://travis-ci.org/jessfraz/irssi/branches)
+-	[![build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/irssi.svg?label=Automated%20update.sh)](https://doi-janky.infosiftr.net/job/update.sh/job/irssi)
 
 | Build | Status | Badges | (per-arch) |
 |:-:|:-:|:-:|:-:|
-| [`amd64`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/irssi) | [`arm32v5`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/irssi) | [`arm32v6`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/irssi) | [`arm32v7`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/irssi) |
-| [`arm64v8`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/irssi) | [`i386`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/irssi) | [`ppc64le`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/irssi) | [`s390x`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/s390x/job/irssi/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/s390x/job/irssi) |
+| [![amd64 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/amd64/job/irssi.svg?label=amd64)](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/irssi) | [![arm32v5 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/irssi.svg?label=arm32v5)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/irssi) | [![arm32v6 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/irssi.svg?label=arm32v6)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/irssi) | [![arm32v7 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/irssi.svg?label=arm32v7)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/irssi) |
+| [![arm64v8 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/irssi.svg?label=arm64v8)](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/irssi) | [![i386 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/i386/job/irssi.svg?label=i386)](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/irssi) | [![ppc64le build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/irssi.svg?label=ppc64le)](https://doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/irssi) | [![s390x build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/s390x/job/irssi.svg?label=s390x)](https://doi-janky.infosiftr.net/job/multiarch/job/s390x/job/irssi) |
 
 <!-- THIS FILE IS GENERATED BY https://github.com/docker-library/docs/blob/master/generate-repo-stub-readme.sh -->
