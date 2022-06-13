@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.16
 
 RUN apk add --no-cache \
 		ca-certificates \
@@ -12,28 +12,27 @@ RUN set -eux; \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.2.3
+ENV IRSSI_VERSION 1.4.1
 
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .build-deps \
-		autoconf \
-		automake \
 		coreutils \
-		dpkg-dev dpkg \
 		gcc \
 		glib-dev \
 		gnupg \
 		libc-dev \
 		libtool \
 		lynx \
-		make \
+		meson \
 		ncurses-dev \
+		ninja \
 		openssl \
 		openssl-dev \
 		perl-dev \
 		pkgconf \
 		tar \
+		xz \
 	; \
 	\
 	wget "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz" -O /tmp/irssi.tar.xz; \
@@ -50,16 +49,15 @@ RUN set -eux; \
 	rm /tmp/irssi.tar.xz; \
 	\
 	cd /usr/src/irssi; \
-	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
-	./configure \
-		--build="$gnuArch" \
-		--enable-true-color \
-		--with-bot \
-		--with-proxy \
-		--with-socks \
+	meson \
+		-Denable-true-color=yes \
+		-Dwith-bot=yes \
+		-Dwith-perl=yes \
+		-Dwith-proxy=yes \
+		Build \
 	; \
-	make -j "$(nproc)"; \
-	make install; \
+	ninja -C Build -j "$(nproc)"; \
+	ninja -C Build install; \
 	\
 	cd /; \
 	rm -rf /usr/src/irssi; \
