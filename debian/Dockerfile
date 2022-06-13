@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 RUN set -eux; \
 	apt-get update; \
@@ -19,18 +19,15 @@ RUN set -eux; \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.2.3
+ENV IRSSI_VERSION 1.4.1
 
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		autoconf \
-		automake \
 		bzip2 \
 		dirmngr \
-		dpkg-dev \
 		gnupg \
 		libglib2.0-dev \
 		libncurses-dev \
@@ -38,7 +35,8 @@ RUN set -eux; \
 		libssl-dev \
 		libtool \
 		lynx \
-		make \
+		meson \
+		ninja-build \
 		pkg-config \
 		xz-utils \
 	; \
@@ -58,16 +56,15 @@ RUN set -eux; \
 	rm /tmp/irssi.tar.xz; \
 	\
 	cd /usr/src/irssi; \
-	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
-	./configure \
-		--build="$gnuArch" \
-		--enable-true-color \
-		--with-bot \
-		--with-proxy \
-		--with-socks \
+	meson \
+		-Denable-true-color=yes \
+		-Dwith-bot=yes \
+		-Dwith-perl=yes \
+		-Dwith-proxy=yes \
+		Build \
 	; \
-	make -j "$(nproc)"; \
-	make install; \
+	ninja -C Build -j "$(nproc)"; \
+	ninja -C Build install; \
 	\
 	cd /; \
 	rm -rf /usr/src/irssi; \
