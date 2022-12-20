@@ -14,7 +14,7 @@ For outstanding `irssi` image PRs, check [PRs with the "library/irssi" label on 
 
 ---
 
--	[![build status badge](https://img.shields.io/github/workflow/status/jessfraz/irssi/GitHub%20CI/master?label=GitHub%20CI)](https://github.com/jessfraz/irssi/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster)
+-	[![build status badge](https://img.shields.io/github/actions/workflow/status/jessfraz/irssi/ci.yml?branch=master&label=GitHub%20CI)](https://github.com/jessfraz/irssi/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster)
 -	[![build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/irssi.svg?label=Automated%20update.sh)](https://doi-janky.infosiftr.net/job/update.sh/job/irssi/)
 
 | Build | Status | Badges | (per-arch) |
