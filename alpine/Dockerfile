@@ -12,7 +12,7 @@ RUN set -eux; \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.4.3
+ENV IRSSI_VERSION 1.4.4
 
 RUN set -eux; \
 	\
