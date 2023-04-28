@@ -27,7 +27,6 @@ RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		bzip2 \
-		dirmngr \
 		gnupg \
 		libglib2.0-dev \
 		libncurses-dev \
