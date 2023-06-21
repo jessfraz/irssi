@@ -84,6 +84,14 @@ for variant in debian alpine; do
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$variant/Dockerfile")"
 	arches="${parentRepoToArches[$parent]}"
 
+	suiteAlias="${parent#*:}" # "alpine:3.18" -> "3.18", "debian:bookworm-slim" -> "bookworm-slim"
+	suiteAlias="${suiteAlias%-slim}" # "bookworm-slim" -> "bookworm"
+	if [ "$variant" = 'alpine' ]; then
+		suiteAlias="$variant$suiteAlias" # "3.18" -> "alpine3.18"
+	fi
+	variantAliases+=( "${versionAliases[@]/%/-$suiteAlias}" )
+	variantAliases=( "${variantAliases[@]//latest-/}" )
+
 	echo
 	cat <<-EOE
 		Tags: $(join ', ' "${variantAliases[@]}")
